@@ -17,7 +17,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "InmoAI — Sofía atiende. Vos cerrás.",
+  title: "InmoAI — Agendá visitas 24/7 con IA para inmobiliarias.",
   description:
     "Sofía atiende cada consulta de WhatsApp al instante, califica a tus clientes, recomienda propiedades y agenda visitas — las 24 horas.",
 };
