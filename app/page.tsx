@@ -617,8 +617,7 @@ export default function Home() {
           <div className="obj-item">
             <div className="obj-q">¿Puedo cancelar cuando quiero?</div>
             <div className="obj-a">
-              Sin contratos largos. Si en el primer mes no ves resultados concretos, te devolvemos
-              el dinero. Confiamos en lo que hacemos.
+              Sin contratos largos.
             </div>
           </div>
         </div>
