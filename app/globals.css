@@ -539,6 +539,66 @@ footer {
 .f-logo { font-family: var(--font-fraunces), 'Fraunces', serif; font-size:18px; font-weight:700; color:#F7F6F2; }
 .f-logo span { color:#2A9D5C; }
 
+/* ── LEAD FORM ── */
+.lead-form-wrap {
+  max-width: 520px;
+  margin: 56px auto 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.07);
+}
+.lead-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.lead-form-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+.lead-form-field input {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+}
+.lead-form-field input:focus { border-color: var(--green); }
+.lead-form-field input::placeholder { color: var(--dim); }
+.lead-form-submit {
+  width: 100%;
+  margin-top: 8px;
+}
+.lead-form-success {
+  text-align: center;
+  padding: 32px 0;
+}
+.lead-form-success-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.lead-form-success h3 {
+  font-family: var(--font-fraunces), 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.lead-form-success p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 /* ── UTIL ── */
 .text-center { text-align:center; }
 .mw-640 { max-width:640px; }

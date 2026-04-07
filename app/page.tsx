@@ -33,6 +33,73 @@ function scrollToComo() {
   document.getElementById("como")?.scrollIntoView({ behavior: "smooth" });
 }
 
+function LeadForm() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const surname = (form.elements.namedItem("surname") as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
+
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, surname, phone }),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("Hubo un error al enviar. Intentá de nuevo.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (submitted) {
+    return (
+      <div className="lead-form-wrap">
+        <div className="lead-form-success">
+          <div className="lead-form-success-icon">✅</div>
+          <h3>¡Gracias! Te contactamos pronto.</h3>
+          <p>Recibimos tus datos. Un miembro del equipo de InmoAI te va a escribir en las próximas horas.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="lead-form-wrap">
+      <form onSubmit={handleSubmit}>
+        <div className="lead-form-field">
+          <label htmlFor="name">Nombre</label>
+          <input id="name" name="name" type="text" placeholder="Juan" required />
+        </div>
+        <div className="lead-form-field">
+          <label htmlFor="surname">Apellido</label>
+          <input id="surname" name="surname" type="text" placeholder="García" required />
+        </div>
+        <div className="lead-form-field">
+          <label htmlFor="phone">Teléfono / WhatsApp</label>
+          <input id="phone" name="phone" type="tel" placeholder="+54 9 11 1234-5678" required />
+        </div>
+        {error && <p style={{ color: "var(--red)", fontSize: 13, marginBottom: 12 }}>{error}</p>}
+        <button className="btn-primary lead-form-submit" type="submit" disabled={loading}>
+          {loading ? "Enviando…" : "Quiero conocer InmoAI →"}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function DemoChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -623,7 +690,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DEMO */}
+      {/* CONTACT FORM */}
+      <section className="demo-section" id="demo">
+        <div className="sec-tag text-center">Empezá hoy</div>
+        <h2 className="sec-h text-center" style={{ maxWidth: 540, margin: "0 auto 12px" }}>
+          Hablemos sobre
+          <br />
+          tu <em>inmobiliaria.</em>
+        </h2>
+        <p className="sec-sub text-center" style={{ margin: "0 auto", maxWidth: 480 }}>
+          Dejanos tus datos y te contactamos para mostrarte cómo Sofía puede trabajar para vos.
+        </p>
+        <LeadForm />
+      </section>
+
+      {/* DEMO — temporarily replaced by lead form
       <section className="demo-section" id="demo">
         <div className="sec-tag text-center">Demo en vivo</div>
         <h2 className="sec-h text-center" style={{ maxWidth: 540, margin: "0 auto 12px" }}>
@@ -636,6 +717,7 @@ export default function Home() {
         </p>
         <DemoChat />
       </section>
+      */}
 
       {/* CTA */}
       <section className="cta-section">
